@@ -15,5 +15,6 @@ public class ProductController {
     public String write(){
         return "write";
     }
+
 }
 
