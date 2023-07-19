@@ -6,3 +6,12 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/metadb
+    username: root
+    password: 101101
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
