@@ -39,7 +39,7 @@
         <div class="mb-3">
             <input type="text" class="form-control" placeholder="Enter 상품재고" value="" name="qty">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">상품등록</button>
     </form>
 </div>
 

@@ -13,5 +13,5 @@ spring:
     password: 101101
   jpa:
     hibernate:
-      ddl-auto: create
+#      ddl-auto: create
     show-sql: true
