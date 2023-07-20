@@ -8,15 +8,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
-@Repository // 컴퍼넌트 스캔
+@Repository // 컴퍼넌트 스캔 // 클래스를 IoC에 bean으로 등록하고 + 데이터베이스와의 상호작용을 처리하는 dao임을 표시  / repository는 DAO랑 비슷한 개념
 public class ProductRepository {
 
-    @Autowired
+    @Autowired // IOC에서 자동으로 DI(의존성주입)
     private EntityManager em;
 
-    @Transactional
-    public void save(String name, int price, int qty){
-        Query query = em.createNativeQuery("insert into product_tb(name, price, qty) values(:name, :price, :qty)");
+    @Transactional // db작업 전부 정상적으로 종료되면 커밋, 예외가 발생하면 롤백   /   DB 변경(C,U,D) 있는데 @Transactional 빼먹으면 오류뜸
+    public void save(String name, int price, int qty){ // 매개변수 이름이 jsp의 이름이랑도 같아야 함
+        Query query = em.createNativeQuery("insert into product_tb(name, price, qty) values(:name, :price, :qty)"); // 앞에 :붙은건 그냥 문법
         query.setParameter("name", name);
         query.setParameter("price", price);
         query.setParameter("qty", qty);
@@ -24,13 +24,13 @@ public class ProductRepository {
     }
 
     public List<Product> findAll() {
-        Query query = em.createNativeQuery("select * from product_tb", Product.class);
+        Query query = em.createNativeQuery("select * from product_tb", Product.class); //  쿼리 결과를 Product클래스 형태로
         List<Product> productlist = query.getResultList();
         return productlist;
     }
 
     public Product findById(int id) {
-        Query query = em.createNativeQuery("select * from product_tb where id = :id", Product.class);
+        Query query = em.createNativeQuery("select * from product_tb where id = :id", Product.class); //  쿼리 결과를 Product클래스 형태로
         query.setParameter("id", id);
         Product product = (Product) query.getSingleResult();
         return product;
