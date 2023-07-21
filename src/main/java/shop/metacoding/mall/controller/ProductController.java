@@ -21,10 +21,20 @@ public class ProductController {
     private ProductRepository productRepository;
 
 
+//    @PostMapping("/product/update")
+//    public String update(int id, String name, int price, int qty) {
+//        productRepository.update(id, name, price, qty);
+//        return "redirect:/product/"+id;
+//    }
     @PostMapping("/product/update")
-    public String update(int id, String name, int price, int qty) {
+    public String update(int id, String name, Integer price, Integer qty) {
+        Product product = productRepository.findById(id);
+        if(name.equals("")){name=product.getName();}
+        if(price==null){price=product.getPrice();}
+        if(qty==null){qty=product.getQty();}
         productRepository.update(id, name, price, qty);
-        return "redirect:/product/"+id;
+//        return "redirect:/product/"+id;
+        return "redirect:/";
     }
 
 
